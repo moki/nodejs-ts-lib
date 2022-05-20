@@ -1,0 +1,29 @@
+{
+  "name": "nodejs-ts-lib",
+  "version": "0.0.0",
+  "description": "node.js typescript library",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "files": [
+    "lib/"
+  ],
+  "scripts": {
+    "build": "npm run build:clean && npm run build:cjs && npm run build:esm",
+    "build:clean": "rm -rf lib",
+    "build:cjs": "npm run build:cjs:code && npm run build:cjs:types",
+    "build:cjs:code": "node scripts/build.cjs.js",
+    "build:cjs:types": "tsc -p scripts/tsconfig.cjs.json",
+    "build:esm": "npm run build:esm:code && npm run build:esm:types",
+    "build:esm:code": "node scripts/build.esm.js",
+    "build:esm:types": "tsc -p scripts/tsconfig.esm.json",
+    "prepublishOnly": "npm run build"
+  },
+  "author": "github.com/moki",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^17.0.35",
+    "esbuild": "^0.14.39",
+    "esbuild-node-externals": "^1.4.1",
+    "typescript": "^4.6.4"
+  }
+}
